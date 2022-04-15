@@ -16,10 +16,28 @@ public class MarkdownParse {
             int closeBracket = markdown.indexOf("]", openBracket);
             int openParen = markdown.indexOf("(", closeBracket);
             int closeParen = markdown.indexOf(")", openParen);
+            
+            // in case not found
             if(openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1){
                 break;
             }
-            toReturn.add(markdown.substring(openParen + 1, closeParen));
+
+
+            // to check for images
+            if(openBracket != 0){
+                char character = markdown.charAt(openBracket - 1);
+                if(character == '!'){
+                    currentIndex = closeParen + 1;
+                    continue;
+                }
+            }
+
+            String substring = markdown.substring(openParen + 1, closeParen);
+            
+            // to make sure it's a link
+            if(substring.contains(".")){
+                toReturn.add(substring);
+            }
             currentIndex = closeParen + 1;
         }
 
