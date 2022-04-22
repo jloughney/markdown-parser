@@ -32,12 +32,19 @@ public class MarkdownParse {
                 }
             }
 
+            // in case closeBracket and openParen are not next to each other
+            if(closeBracket + 1 != openParen){
+                currentIndex++;
+                continue;
+            }
             String substring = markdown.substring(openParen + 1, closeParen);
             
             // to make sure it's a link
             if(substring.contains(".")){
                 toReturn.add(substring);
             }
+
+
             currentIndex = closeParen + 1;
         }
 
