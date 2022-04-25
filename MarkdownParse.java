@@ -18,18 +18,27 @@ public class MarkdownParse {
                 int closeBracket = markdown.indexOf("]", openBracket);
                 int openParen = markdown.indexOf("(", closeBracket);
                 int closeParen = markdown.indexOf(")", openParen);
+                // test the case where there is a missing bracket on the end
                 if(openBracket == -1 || closeBracket == -1 || openParen == -1 || closeParen == -1)
                 {
                     break;
                 }
-                toReturn.add(markdown.substring(openParen + 1, closeParen));
                 
+                // to check for the '!' which means its an image
+                if(openBracket != 0){
+                    char imageAt = markdown.charAt(openBracket - 1);
+                    if(imageAt == '!'){
+                        currentIndex = closeParen + 1;
+                        continue;
+                    }
+                }
+
+            
+
                 currentIndex = closeParen + 1;
-            
-            
-            //#1
-            System.out.println("Index: " + currentIndex);
+
         }
+
 
         return toReturn;
     }
