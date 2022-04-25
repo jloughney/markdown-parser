@@ -33,7 +33,13 @@ public class MarkdownParse {
                     }
                 }
 
-            
+            String substring = markdown.substring(openParen + 1, closeParen);
+
+             // checking the '.' to make sure its a link
+            if(substring.contains("."))
+            {
+                toReturn.add(substring);
+            }
 
                 currentIndex = closeParen + 1;
 
