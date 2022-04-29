@@ -89,4 +89,11 @@ public class MarkdownParseTest {
         assertEquals(List.of(),
                  getLinksResult("test-file8.md"));    
     }
+
+    @Test
+    public void testGetLinks9() throws IOException{
+        assertEquals(List.of(),
+                 getLinksResult("test-file9.md"));    
+    }
+
 }
