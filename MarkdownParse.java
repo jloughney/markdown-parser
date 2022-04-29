@@ -40,7 +40,7 @@ public class MarkdownParse {
             String substring = markdown.substring(openParen + 1, closeParen);
             
             // to make sure it's a link
-            if(substring.contains(".")){
+            if(substring.contains(".") && !substring.contains("..")){
                 toReturn.add(substring);
             }
 
